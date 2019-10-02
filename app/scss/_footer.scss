@@ -1,0 +1,106 @@
+/*!
+ * Footer content
+ */
+
+.footer {
+
+  & .contact .form {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 10px;
+    margin-bottom: 30px;
+
+    & .form-block {
+      width: 100%;
+    }
+
+    & input, & textarea {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 5px 10px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 0;
+    }
+  }
+
+  & .ball-1 {
+    width: 155px;
+    height: 148px;
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: -40px;
+    background: url("../images/ball-1.png") center center no-repeat;
+    background-size: contain;
+
+    @media screen and (max-width: 1199px) {
+      width: 145px;
+      height: 140px;
+    }
+  }
+
+  & .description {
+    background: url("../images/description-bg.jpg") center center no-repeat;
+    //min-height: 510px;
+    background-size: cover;
+
+    @media screen and (max-width: 575px) {
+      background-position: right center;
+    }
+
+    &-title {
+      font-size: 34px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+
+      & span {
+        font-size: 30px;
+      }
+
+      @media screen and (max-width: 1199px) {
+        font-size: 32px;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 24px;
+      }
+      @media screen and (max-width: 575px) {
+        padding-right: 80px;
+      }
+    }
+  }
+
+  & .copyright {
+    background: #000;
+    height: 70px;
+    color: $white;
+    font-size: 24px;
+
+    @media screen and (max-width: 1199px) {
+      font-size: 22px;
+    }
+    @media screen and (max-width: 991px) {
+      height: auto;
+    }
+
+    & p {
+      display: block;
+      width: 33%;
+
+      @media screen and (max-width: 991px) {
+        width: 100%;
+      }
+    }
+
+    & a {
+      color: $white;
+
+      &:hover {
+        color: $blue;
+      }
+    }
+
+    & .rights {
+      color: $grey;
+      font-size: initial;
+    }
+  }
+}
