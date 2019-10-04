@@ -5,7 +5,20 @@
   background: url(../images/header-bg.jpg) center center no-repeat;
   background-size: cover;
   height: auto;
-  min-height: 500px;
+  min-height: 600px;
+  position: relative;
+  z-index: 9;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    z-index: 1;
+  }
 
   @media screen and (max-width: 991px) {
     height: auto;
@@ -26,8 +39,89 @@
       }
     }
 
-    &.bg-dark {
-      background-color: $blue !important;
+    &.bg-darkmenu {
+      background: rgba(0,0,0,.75);
+      border-bottom: none;
+      height: auto;
+      align-items: center;
+      transition: .5s;
+
+      &.opacity {
+        background: rgba(0,0,0,1);
+        height: 100%;
+        align-items: flex-start;
+        transition: .5s;
+      }
+    }
+
+    & .ubermenu {
+      align-items: center;
+
+      & .whatsapp {
+        font-size: 30px;
+        margin-left: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & span {
+          font-size: 20px;
+          margin-right: 10px;
+          //font-weight: 600;
+        }
+
+        @media screen and (max-width: 991px) {
+          display: none;
+        }
+
+        &, &:visited, &:focus, & span, & span:visited, & span:focus {
+          color: #0fbd17 !important;
+          text-decoration: none;
+          transition: .3s;
+
+          &:hover {
+            text-decoration: none;
+            color: $blue !important;
+            transition: .3s;
+          }
+        }
+      }
+    }
+
+    & .ubermenu-mobile {
+      align-items: center;
+      right: 80px;
+      top: 20px;
+
+      & .whatsapp {
+        font-size: 30px;
+        margin-left: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & span {
+          font-size: 20px;
+          margin-right: 10px;
+          //font-weight: 600;
+
+          @include xs() {
+            display: none;
+          }
+        }
+
+        &, &:visited, &:focus, & span, & span:visited, & span:focus {
+          color: #0fbd17 !important;
+          text-decoration: none;
+          transition: .3s;
+
+          &:hover {
+            color: $blue !important;
+            text-decoration: none;
+            transition: .3s;
+          }
+        }
+      }
     }
 
     & .nav {
@@ -39,7 +133,7 @@
       &-item {
 
         & .nav-link.active {
-          color: $dark-blue;
+          color: $blue;
           //font-weight: 500;
         }
       }
@@ -60,6 +154,7 @@
     height: 100%;
 
     &-title {
+      z-index: 2;
       width: 75%;
       font-family: 'Roboto', sans-serif;
       font-weight: 900;
@@ -78,6 +173,7 @@
     }
 
     &-description {
+      z-index: 2;
       font-weight: 300;
       font-size: 20px;
       width: 75%;
@@ -94,6 +190,7 @@
     }
 
     &-button {
+      z-index: 2;
       margin-top: 10px;
       text-align: left;
       text-shadow: 0 1px 1px $black;
@@ -103,11 +200,15 @@
         margin-bottom: 20px;
       }
     }
+
+    &-arrow {
+      z-index: 2;
+    }
   }
 }
 
 .btn {
-  background: $blue url("../images/button-bg.jpg") center center no-repeat;
+  background: $blue;
   border-radius: 0;
   color: $white;
   display: block;
@@ -131,7 +232,7 @@
   }
 
   &:hover {
-    background: $blue url("../images/button-bg-hover.jpg") center center no-repeat;
+    background: $dark-blue;
     color: $white;
   }
 }

@@ -1,66 +1,99 @@
 //Scripts
 $(function () {
+    $(".hamburger--collapse").click(function () {
+        $(this).toggleClass("is-active");
+        $(".bg-darkmenu").toggleClass("opacity");
+        ($("body").hasClass("hidden")) ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+    });
 
+    $(document).mouseup(function (e) {
+        ($(".hamburger--collapse").has(e.target).length === 0) ?
+            $(".hamburger--collapse").removeClass("is-active") &&
+            $(".bg-darkmenu").removeClass("opacity") &&
+            ($("body").hasClass("hidden")) ? $(this).removeClass("hidden") : $(this).addClass("hidden") :
+            $(this);
+    });
+
+    $("a.nav-link").click(function (e) {
+        e.preventDefault();
+
+        $(document).off("scroll");
+        $(menu_selector + " a.active").removeClass("active");
+        $(this).addClass("active");
+        var hash = $(this).attr("href");
+
+        var target = $(hash);
+
+        $("html, body").animate({
+            scrollTop: target.offset().top
+        }, 500, function () {
+            //window.location.hash = hash;
+            $(document).on("scroll", onScroll);
+        });
+
+    });
+
+    //Popup images from slider
     //Popup images from slider
     let modalId = $('#image-gallery');
 
     $(function () {
 
-            loadGallery(true, 'a.thumbnail');
+        loadGallery(true, 'a.thumbnail');
 
-            //This function disables buttons when needed
-            function disableButtons(counter_max, counter_current) {
-                $('#show-previous-image, #show-next-image')
-                    .show();
-                if (counter_max === counter_current) {
-                    $('#show-next-image')
-                        .hide();
-                } else if (counter_current === 1) {
-                    $('#show-previous-image')
-                        .hide();
+        //This function disables buttons when needed
+        function disableButtons(counter_max, counter_current) {
+            $('#show-previous-image, #show-next-image')
+                .show();
+            if (counter_max === counter_current) {
+                $('#show-next-image')
+                    .hide();
+            } else if (counter_current === 1) {
+                $('#show-previous-image')
+                    .hide();
+            }
+        }
+
+        function loadGallery(setIDs, setClickAttr) {
+            let current_image,
+                selector,
+                counter = 0;
+
+            $('#show-next-image, #show-previous-image').click(function () {
+                if ($(this)
+                    .attr('id') === 'show-previous-image') {
+                    current_image--;
+                } else {
+                    current_image++;
                 }
+
+                selector = $('[data-image-id="' + current_image + '"]');
+                updateGallery(selector);
+            });
+
+            function updateGallery(selector) {
+                let $sel = selector;
+                current_image = $sel.data('image-id');
+                $('#image-gallery-title')
+                    .text($sel.data('title'));
+                $('#image-gallery-image')
+                    .attr('src', $sel.data('image'));
+                disableButtons(counter, $sel.data('image-id'));
             }
 
-            function loadGallery(setIDs, setClickAttr) {
-                let current_image,
-                    selector,
-                    counter = 0;
-
-                $('#show-next-image, #show-previous-image').click(function () {
-                        if ($(this)
-                            .attr('id') === 'show-previous-image') {
-                            current_image--;
-                        } else {
-                            current_image++;
-                        }
-
-                        selector = $('[data-image-id="' + current_image + '"]');
-                        updateGallery(selector);
-                    });
-
-                function updateGallery(selector) {
-                    let $sel = selector;
-                    current_image = $sel.data('image-id');
-                    $('#image-gallery-title')
-                        .text($sel.data('title'));
-                    $('#image-gallery-image')
-                        .attr('src', $sel.data('image'));
-                    disableButtons(counter, $sel.data('image-id'));
-                }
-
-                if (setIDs == true) {
-                    $('[data-image-id]')
-                        .each(function () {
-                            counter++;
-                            $(this)
-                                .attr('data-image-id', counter);
-                        });
-                }
-                $(setClickAttr).on('click', function () {
-                        updateGallery($(this));
+            if (setIDs == true) {
+                $('[data-image-id]')
+                    .each(function () {
+                        counter++;
+                        $(this)
+                            .attr('data-image-id', counter);
                     });
             }
-        });
+            $(setClickAttr).on('click', function () {
+                updateGallery($(this));
+            });
+        }
+    });
 
 // build key actions
     $(document).keydown(function (e) {
@@ -169,8 +202,8 @@ $(function () {
         .jcarousel({
             wrap: 'circular',
             animation: {
-                duration: 1000,
-                speed: 1000,
+                duration: 500,
+                speed: 500,
                 easing: 'linear',
                 complete: function () {
                 }
@@ -200,8 +233,8 @@ $(function () {
         .jcarousel({
             wrap: 'circular',
             animation: {
-                duration: 1000,
-                speed: 1000,
+                duration: 500,
+                speed: 500,
                 easing: 'linear',
                 complete: function () {
                 }
@@ -237,8 +270,8 @@ $(function () {
         .jcarousel({
             wrap: 'circular',
             animation: {
-                duration: 1000,
-                speed: 1000,
+                duration: 500,
+                speed: 500,
                 easing: 'linear',
                 complete: function () {
                 }
@@ -295,24 +328,6 @@ $(function () {
     //Change active items menu on change
     $(document).on("scroll", onScroll);
 
-    $("a.nav-link").click(function (e) {
-        e.preventDefault();
-
-        $(document).off("scroll");
-        $(menu_selector + " a.active").removeClass("active");
-        $(this).addClass("active");
-        var hash = $(this).attr("href");
-
-        var target = $(hash);
-
-        $("html, body").animate({
-            scrollTop: target.offset().top
-        }, 500, function () {
-            //window.location.hash = hash;
-            $(document).on("scroll", onScroll);
-        });
-
-    });
 });
 
 //Change active items menu on change
@@ -334,16 +349,17 @@ $(document).mouseup(function (e) {
 function onClick() {
     $(".navbar-toggler").addClass("collapsed");
     $(".navbar-collapse.collapse").removeClass("show");
+    $(".bg-darkmenu").removeClass("opacity");
+    ($("body").hasClass("hidden")) ? $(this).removeClass("hidden") : $(this).addClass("hidden");
 }
 
 function onScroll() {
     var scroll_top = $(document).scrollTop();
     $(menu_selector + " a").each(function () {
         var hash = $(this).attr("href");
-        // console.log(hash);
         var target = $(hash);
 
-        if (target.position().top <= scroll_top && target.position().top + target.outerHeight() > scroll_top) {
+        if ((target.position().top <= scroll_top) && (target.position().top + target.outerHeight() > scroll_top)) {
             $(menu_selector + " a.active").removeClass("active");
             $(this).addClass("active");
         } else {

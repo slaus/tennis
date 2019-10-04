@@ -4,6 +4,26 @@
 
 .footer {
 
+  & .logo {
+    display: block;
+    height: 45px;
+
+    & img {
+      height: 100%;
+      width: auto;
+      filter: gray; /* IE6-9 */
+      -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+      filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+      transition: .3s;
+
+      &:hover {
+        -webkit-filter: grayscale(0);
+        filter: none;
+        transition: .3s;
+      }
+    }
+  }
+
   & .contact .form {
     background: rgba(0, 0, 0, 0.4);
     padding: 20px 10px;
@@ -17,8 +37,21 @@
       width: 100%;
       margin-bottom: 20px;
       padding: 5px 10px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(255, 255, 255, 0.15);
       border: 0;
+      color: $white;
+    }
+
+    @include xs() {
+      & input {
+        width: auto;
+      }
+    }
+
+    & .submit {
+      transition: .3s;
+      border: 3px solid $blue;
+      text-shadow: 0 1px 1px $black;
     }
   }
 
@@ -31,6 +64,7 @@
     top: -40px;
     background: url("../images/ball-1.png") center center no-repeat;
     background-size: contain;
+    z-index: 2;
 
     @media screen and (max-width: 1199px) {
       width: 145px;
@@ -48,7 +82,7 @@
     }
 
     &-title {
-      font-size: 34px;
+      font-size: 28px;
       font-family: 'Roboto', sans-serif;
       font-weight: 900;
 
