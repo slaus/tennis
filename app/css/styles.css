@@ -583,6 +583,36 @@ a, a:hover {
 .main {
   z-index: 1;
   position: relative; }
+  .main .gallery {
+    margin: 30px auto;
+    border-top: 3px solid #e0e0e0; }
+    .main .gallery-description {
+      padding: 0 10%; }
+    .main .gallery-item img {
+      z-index: 1; }
+      .main .gallery-item img:hover {
+        box-shadow: 0 0 15px #152e3a;
+        z-index: 2; }
+  .main .club-block-item {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 20px;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .main .club-block-item-logo {
+      text-align: right;
+      height: 50px;
+      width: 120px; }
+    .main .club-block-item-text h3 {
+      font-size: 24px;
+      margin-bottom: 5px; }
+    .main .club-block-item-text p {
+      margin-bottom: 0; }
   .main .steps {
     min-height: 610px;
     background: url("../images/steps-bg.jpg") center 130px no-repeat; }
@@ -883,7 +913,6 @@ a, a:hover {
         .main .payment-description {
           padding-right: 0; } }
   .main .rate {
-    background: url("../images/rate-bg.jpg") center center no-repeat;
     background-size: cover; }
     .main .rate-title {
       font-size: 36px;

@@ -6,6 +6,58 @@
   z-index: 1;
   position: relative;
 
+  & .gallery {
+    margin: 30px auto;
+    border-top: 3px solid $grey;
+
+    &-description {
+      padding: 0 10%;
+    }
+
+    &-item {
+
+      & img {
+        z-index: 1;
+
+        &:hover {
+          box-shadow: 0 0 15px #152e3a;
+          z-index: 2;
+        }
+      }
+    }
+  }
+
+  & .club {
+
+    &-block {
+
+      &-item {
+        display: flex;
+        margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
+
+        &-logo {
+          text-align: right;
+          height: 50px;
+          width: 120px;
+        }
+
+        &-text {
+
+          & h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+          }
+
+          & p {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
   & .steps {
     min-height: 610px;
     background: url("../images/steps-bg.jpg") center 130px no-repeat;
@@ -393,7 +445,7 @@
 
   & .rate {
     //min-height: 820px;
-    background: url("../images/rate-bg.jpg") center center no-repeat;
+    //background: url("../images/rate-bg.jpg") center center no-repeat;
     background-size: cover;
 
     &-title {

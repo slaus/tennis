@@ -1,5 +1,11 @@
 //Scripts
 $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+
+
     $(".hamburger--collapse").click(function () {
         $(this).toggleClass("is-active");
         $(".bg-darkmenu").toggleClass("opacity");
